@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import MyDatePicker from "../components/DatePicker";
 import MyImagePicker from "../components/ImagePicker";
+import * as ImagePicker from "expo-image-picker";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,20 +12,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: 300,
-    height: 500,
+    width: 360,
+    height: 600,
     backgroundColor: "#ddd",
     alignItems: "center",
+    borderRadius: 7,
+    justifyContent: "flex-start",
+    opacity: 0.9,
   },
   nameText: {
     width: "90%",
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: 20,
   },
   commentText: {
     width: "90%",
-    marginBottom: 20,
     height: 100,
+    marginTop: 20,
   },
   addButton: {
     borderWidth: 1,
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
   },
   addText: {
     fontSize: 20,
-    padding: 5,
+    padding: 10,
   },
 });
 
@@ -41,10 +44,26 @@ export default function MyModal({ onPress }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const [date, setDate] = useState("");
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.modalContainer}>
-        <MyImagePicker />
         <MyDatePicker setDate={setDate} date={date} />
         <TextInput
           label="料理名"
@@ -62,7 +81,7 @@ export default function MyModal({ onPress }) {
           style={styles.commentText}
           blurOnSubmit={true}
         />
-
+        <MyImagePicker pickImage={pickImage} image={image} />
         <TouchableOpacity
           onPress={() => onPress(false)}
           style={styles.addButton}

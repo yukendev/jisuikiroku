@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Modal } from "react-native";
 import MyModal from "./Mymodal";
 import CircleButton from "../components/CircleButton";
 import MyCalender from "../components/Calender";
 import MyCarousel from "../components/Carousel";
+import Constants from "expo-constants";
+import * as ImagePicker from "expo-image-picker";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +22,20 @@ const styles = StyleSheet.create({
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      if (Constants.platform.ios) {
+        const {
+          status,
+        } = await ImagePicker.requestCameraRollPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
       <MyCalender />

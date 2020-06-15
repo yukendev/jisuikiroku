@@ -9,5 +9,5 @@ const styles = StyleSheet.create({
 });
 
 export default function MyCalender() {
-  return <Calendar />;
+  return <Calendar theme={{ arrowColor: "orange" }} />;
 }

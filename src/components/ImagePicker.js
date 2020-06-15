@@ -1,31 +1,35 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { Button } from "react-native-paper";
 
-export default function MyImagePicker() {
-  const [image, setImage] = useState(null);
+const styles = StyleSheet.create({
+  imageContainer: {
+    borderWidth: 1,
+    borderColor: "black",
+    width: 250,
+    height: 250,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    justifyContent: "center",
+  },
+});
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
-
+export default function MyImagePicker({ pickImage, image }) {
   return (
-    <View>
-      <Button onPress={pickImage}>カメラロールから選択</Button>
-      {image && (
-        <Image source={{ uri: image }} style={{ width: 300, height: 300 }} />
+    <View style={styles.imageContainer}>
+      {image ? (
+        <TouchableWithoutFeedback onPress={pickImage}>
+          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+        </TouchableWithoutFeedback>
+      ) : (
+        <Button icon="plus" onPress={pickImage} color="#ddd">
+          カメラロールから選択
+        </Button>
       )}
     </View>
   );

@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     backgroundColor: "#fff",
     width: "60%",
-    marginTop: 50,
     marginBottom: 0,
+    marginTop: 20,
   },
 });
 
