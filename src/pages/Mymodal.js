@@ -71,7 +71,7 @@ export default function MyModal({ onPress }) {
         <TextInput
           label="料理名"
           value={name}
-          onChangeText={(text) => setName({ text })}
+          onChangeText={(text) => setName(text)}
           mode="outlined"
           style={styles.nameText}
           theme={{
@@ -81,7 +81,7 @@ export default function MyModal({ onPress }) {
         <TextInput
           label="コメント"
           value={comment}
-          onChangeText={(text) => setComment({ text })}
+          onChangeText={(text) => setComment(text)}
           mode="outlined"
           multiline={true}
           style={styles.commentText}
