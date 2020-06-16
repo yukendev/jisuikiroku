@@ -31,12 +31,15 @@ const styles = StyleSheet.create({
   },
   addButton: {
     borderWidth: 1,
+    borderColor: "gray",
     backgroundColor: "#fff",
     borderRadius: 4,
+    marginTop: 30,
   },
   addText: {
     fontSize: 20,
     padding: 10,
+    color: "gray",
   },
 });
 
@@ -71,6 +74,9 @@ export default function MyModal({ onPress }) {
           onChangeText={(text) => setName({ text })}
           mode="outlined"
           style={styles.nameText}
+          theme={{
+            colors: { primary: "darkorange" },
+          }}
         />
         <TextInput
           label="コメント"
@@ -80,6 +86,9 @@ export default function MyModal({ onPress }) {
           multiline={true}
           style={styles.commentText}
           blurOnSubmit={true}
+          theme={{
+            colors: { primary: "darkorange" },
+          }}
         />
         <MyImagePicker pickImage={pickImage} image={image} />
         <TouchableOpacity

@@ -9,5 +9,12 @@ const styles = StyleSheet.create({
 });
 
 export default function MyCalender() {
-  return <Calendar theme={{ arrowColor: "orange" }} />;
+  return (
+    <Calendar
+      theme={{
+        arrowColor: "orange",
+        todayTextColor: "orange",
+      }}
+    />
+  );
 }
