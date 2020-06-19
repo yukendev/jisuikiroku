@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 30,
     marginTop: 60,
+    backgroundColor: "#fff",
   },
   buttonWrapper: {
     position: "absolute",
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Home() {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
