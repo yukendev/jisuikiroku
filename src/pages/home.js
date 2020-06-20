@@ -22,7 +22,10 @@ const styles = StyleSheet.create({
 });
 
 export default function Home() {
+  const dt = new Date();
+
   const [modalVisible, setModalVisible] = useState(false);
+  const [date, setDate] = useState(`${dt}`);
 
   useEffect(() => {
     (async () => {
@@ -39,12 +42,13 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <MyCalender />
+      <MyCalender date={date} setDate={setDate} />
+      <Text>{date}</Text>
 
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <MyModal onPress={setModalVisible} />
       </Modal>
-      <MyCarousel />
+      <MyCarousel date={date} setDate={setDate} />
       <View style={styles.buttonWrapper}>
         <CircleButton onPress={() => setModalVisible(true)} />
       </View>

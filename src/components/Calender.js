@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 
 const styles = StyleSheet.create({
@@ -8,13 +8,25 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function MyCalender() {
+export default function MyCalender({ date, setDate }) {
+  const dt = new Date(date);
+  const y = dt.getFullYear();
+  const m = ("00" + (dt.getMonth() + 1)).slice(-2);
+  const d = ("00" + dt.getDate()).slice(-2);
+  const result = y + "-" + m + "-" + d;
+  const mark = {
+    [`${result}`]: { selected: true, selectedColor: "orange" },
+  };
   return (
-    <Calendar
-      theme={{
-        arrowColor: "orange",
-        todayTextColor: "orange",
-      }}
-    />
+    <View>
+      <Calendar
+        theme={{
+          arrowColor: "orange",
+          todayTextColor: "orange",
+        }}
+        markedDates={mark}
+        onDayPress={(day) => setDate(day.dateString)}
+      />
+    </View>
   );
 }
