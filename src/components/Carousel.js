@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 export default function MyCarousel({ date, setDate }) {
   const dt = new Date(date);
   const selectedDate = Number(dt.getDate());
-  const month = dt.getMonth() + 1;
+  const month = ("00" + (dt.getMonth() + 1)).slice(-2);
   const year = dt.getFullYear();
   const howManyDays = new Date(`${year}`, `${month}`, 0).getDate();
 
@@ -45,6 +45,12 @@ export default function MyCarousel({ date, setDate }) {
       </View>
     );
   };
+
+  const carouselDate = (index) => {
+    const carouselDate = `${year}-${month}-${index + 1}`;
+    setDate(carouselDate);
+  };
+
   return (
     <View style={styles.wrapper}>
       <Carousel
@@ -53,6 +59,7 @@ export default function MyCarousel({ date, setDate }) {
         itemWidth={Dimensions.get("window").width * 0.85}
         sliderWidth={Dimensions.get("window").width}
         firstItem={`${selectedDate}` - 1}
+        onSnapToItem={(index) => carouselDate(index)}
       />
     </View>
   );

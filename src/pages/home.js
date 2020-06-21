@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Modal } from "react-native";
+import { View, StyleSheet, Modal } from "react-native";
 import MyModal from "./Mymodal";
 import CircleButton from "../components/CircleButton";
 import MyCalender from "../components/Calender";
@@ -43,7 +43,6 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <MyCalender date={date} setDate={setDate} />
-      <Text>{date}</Text>
 
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <MyModal onPress={setModalVisible} />
