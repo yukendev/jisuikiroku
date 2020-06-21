@@ -12,10 +12,26 @@ export default function Route() {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
-        <Stack.Screen name="Initial" component={Initial} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Initial"
+          component={Initial}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Signup"
+          component={Signup}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Home"
+          component={Home}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

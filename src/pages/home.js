@@ -10,14 +10,17 @@ import * as ImagePicker from "expo-image-picker";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 30,
     marginTop: 60,
     backgroundColor: "#fff",
   },
   buttonWrapper: {
     position: "absolute",
-    right: 30,
-    bottom: 40,
+    right: 20,
+    bottom: 30,
+  },
+  carouselContainer: {
+    position: "absolute",
+    bottom: -80,
   },
 });
 
@@ -47,7 +50,9 @@ export default function Home() {
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <MyModal onPress={setModalVisible} />
       </Modal>
-      <MyCarousel date={date} setDate={setDate} />
+      <View style={styles.carouselContainer}>
+        <MyCarousel date={date} setDate={setDate} />
+      </View>
       <View style={styles.buttonWrapper}>
         <CircleButton onPress={() => setModalVisible(true)} />
       </View>

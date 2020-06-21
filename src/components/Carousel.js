@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   carouselContainer: {
     borderWidth: 5,
     borderColor: "orange",
-    height: 300,
+    height: 200,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 export default function MyCarousel({ date, setDate }) {
   const dt = new Date(date);
-  const selectedDate = Number(dt.getDate());
+  const selectedDate = ("00" + dt.getDate()).slice(-2);
   const month = ("00" + (dt.getMonth() + 1)).slice(-2);
   const year = dt.getFullYear();
   const howManyDays = new Date(`${year}`, `${month}`, 0).getDate();
@@ -40,14 +40,14 @@ export default function MyCarousel({ date, setDate }) {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.carouselContainer}>
-        <Text>{howManyDays}</Text>
         <Text>{item}</Text>
       </View>
     );
   };
 
   const carouselDate = (index) => {
-    const carouselDate = `${year}-${month}-${index + 1}`;
+    const num = index + 1;
+    const carouselDate = `${year}-${month}-${("00" + num).slice(-2)}`;
     setDate(carouselDate);
   };
 
@@ -56,7 +56,7 @@ export default function MyCarousel({ date, setDate }) {
       <Carousel
         data={datas}
         renderItem={renderItem}
-        itemWidth={Dimensions.get("window").width * 0.85}
+        itemWidth={Dimensions.get("window").width * 0.5}
         sliderWidth={Dimensions.get("window").width}
         firstItem={`${selectedDate}` - 1}
         onSnapToItem={(index) => carouselDate(index)}
